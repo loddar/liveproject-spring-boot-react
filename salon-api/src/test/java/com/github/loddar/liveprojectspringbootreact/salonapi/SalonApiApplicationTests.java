@@ -1,7 +1,6 @@
 package com.github.loddar.liveprojectspringbootreact.salonapi;
 
-import org.hamcrest.MatcherAssert;
-import org.hamcrest.Matchers;
+import com.github.loddar.liveprojectspringbootreact.salonapi.entities.SalonDetail;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +25,17 @@ class SalonApiApplicationTests {
 	@Test
 	@DisplayName("Has the SalonDetail Bean been created and injected?")
 	void verifySalonDetailHasBeenLoadedWithCorrectContent() {
-		assertThat(salonDetail.getName(), is("AR Salon and Day Spa Services"));
-		assertThat(salonDetail.getAddress(), is("1234 Main Street"));
-		assertThat(salonDetail.getZipcode(), is("58201"));
-		assertThat(salonDetail.getCity(), is("Anytown"));
-		assertThat(salonDetail.getState(), is("ND"));
-		assertThat(salonDetail.getPhone(), is("555-123-4567"));
+		assertThat("Has the expected values?", salonDetail, is(expectedSalonDetail()));
 	}
+
+	private static SalonDetail expectedSalonDetail() {
+	    return SalonDetail.builder()
+                .name("AR Salon and Day Spa Services")
+                .address("1234 Main Street")
+                .zipcode("58201")
+                .city("Anytown")
+                .state("ND")
+                .phone("555-123-4567")
+                .build();
+    }
 }
